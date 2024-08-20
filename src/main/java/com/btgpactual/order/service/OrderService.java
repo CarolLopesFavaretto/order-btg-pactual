@@ -1,12 +1,15 @@
 package com.btgpactual.order.service;
 
-import com.btgpactual.order.Entity.Order;
-import com.btgpactual.order.Entity.OrderItem;
+import com.btgpactual.order.dto.OrderResponse;
+import com.btgpactual.order.entity.Order;
+import com.btgpactual.order.entity.OrderItem;
 import com.btgpactual.order.listener.dto.OrderCreatedEvent;
 import com.btgpactual.order.repository.OrderRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -32,6 +35,11 @@ public class OrderService {
 
         orderRepository.save(entity);
         logger.info("Order saved: {} " + entity);
+    }
+
+    public Page<OrderResponse> findAllByCustomerId(Long customerId, PageRequest pageRequest) {
+        var orders =  orderRepository.findAllByCustomerId(customerId, pageRequest);
+        return orders.map(OrderResponse::fromEntity);
     }
 
     private BigDecimal getTotal(OrderCreatedEvent event) {

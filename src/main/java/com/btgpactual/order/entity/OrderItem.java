@@ -1,4 +1,4 @@
-package com.btgpactual.order.Entity;
+package com.btgpactual.order.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
