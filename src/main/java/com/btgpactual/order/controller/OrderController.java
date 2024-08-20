@@ -19,7 +19,7 @@ public class OrderController {
     private OrderService orderService;
 
     @GetMapping("customer/{customerId}")
-    public ResponseEntity<ApiResponse<OrderResponse>> getOrdersByCustomer(@PathVariable("customerId") Long customerId,
+    public ResponseEntity<ApiResponse<OrderResponse>> listOrders (@PathVariable("customerId") Long customerId,
                                                                           @RequestParam(name = "page", defaultValue = "0") Integer page,
                                                                           @RequestParam(name = "pageSize", defaultValue = "10") Integer size) {
 
