@@ -1,6 +1,8 @@
 package com.btgpactual.order.entity;
 
+import jdk.jshell.Snippet;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -15,6 +17,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Document(collection = "order")
 public class Order {
 
@@ -28,4 +31,5 @@ public class Order {
     private BigDecimal amount;
 
     private List<OrderItem> items;
+
 }
